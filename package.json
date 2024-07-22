@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --env mode=production",
     "start:admin": "webpack serve --open --mode=development --env project=admin",
     "start:client": "webpack serve --open --mode=development"
@@ -44,6 +43,9 @@
     "webpack-dev-server": "^4.13.3"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }

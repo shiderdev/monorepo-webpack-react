@@ -9,11 +9,7 @@ const adminConfig = {
   },
   resolve: {
     extensions: [".mjs", ".js", ".ts", ".tsx"],
-    // mainFields: ["browser", "main", "module"],
     modules: ["node_modules", "src"],
-    alias: {
-      core: path.resolve(__dirname, "src/core/"),
-    },
   },
   module: {
     rules: [
@@ -40,21 +36,6 @@ const adminConfig = {
         loader: "html-loader",
       },
       {
-        test: /\.(png|jpg|gif|svg)$/i,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192, // in bytes
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: "asset/resource",
-      },
-      {
         test: /\.ts$/,
         use: "ts-loader",
         exclude: /node_modules/,
@@ -63,6 +44,7 @@ const adminConfig = {
   },
   devServer: {
     static: "./build",
+    proxy: { "/": "http://localhost:3002/admin" },
     hot: true,
     port: 3002,
     historyApiFallback: true,
@@ -95,11 +77,7 @@ const clientConfig = {
   },
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
-    // mainFields: ["browser", "main", "module"],
     modules: ["node_modules", "src"],
-    alias: {
-      core: path.resolve(__dirname, "src/core/"),
-    },
   },
   module: {
     rules: [
@@ -124,21 +102,6 @@ const clientConfig = {
       {
         test: /\.html$/i,
         loader: "html-loader",
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/i,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192, // in bytes
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: "asset/resource",
       },
       {
         test: /\.ts$/,
